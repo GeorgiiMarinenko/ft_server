@@ -27,7 +27,7 @@ RUN tar -xf phpMyAdmin-5.0.1-english.tar.gz
 RUN rm -rf phpMyAdmin-5.0.1-english.tar.gz
 RUN mv phpMyAdmin-5.0.1-english phpmyadmin
 COPY ./srcs/config.inc.php phpmyadmin
-RUN mv phpmyadmin server
+RUN mv phpmyadmin /var/www/server
 
 # copy & lounch bash script
 COPY ./srcs/run.sh /tmp
