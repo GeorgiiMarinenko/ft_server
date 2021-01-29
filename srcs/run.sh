@@ -1,6 +1,6 @@
 #!/bin/bash
+nginx -t
 service nginx start
-# service php7.3-fpm start
 
 # Configure a wordpress database
 service mysql start

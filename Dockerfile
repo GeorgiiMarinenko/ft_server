@@ -8,8 +8,6 @@ RUN apt-get -y install mariadb-server
 RUN apt-get -y install php7.3 php-mysql php-fpm php-pdo php-gd php-cli php-mbstring
 
 RUN mkdir /var/www/server
-# WorkDirectory
-# WORKDIR /etc/nginx/sites-available/
 
 # Copying config file nginx
 COPY ./srcs/example.crt /etc/ssl/certs/
@@ -35,6 +33,7 @@ RUN wget https://wordpress.org/latest.tar.gz
 RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz
 RUN rm -rf latest.tar.gz
 COPY ./srcs/wp-config.php /var/www/server/wordpress
+COPY ./srcs/autoindex.sh /var/www/server
 
 # copy & lounch bash script
 COPY ./srcs/run.sh /tmp
