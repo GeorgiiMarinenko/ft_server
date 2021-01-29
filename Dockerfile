@@ -1,4 +1,4 @@
-From debian:buster
+FROM debian:buster
 
 RUN apt-get update
 RUN apt-get upgrade -y
@@ -28,6 +28,13 @@ RUN rm -rf phpMyAdmin-5.0.1-english.tar.gz
 RUN mv phpMyAdmin-5.0.1-english phpmyadmin
 COPY ./srcs/config.inc.php phpmyadmin
 RUN mv phpmyadmin /var/www/server
+
+# Wordpress
+WORKDIR /var/www/server
+RUN wget https://wordpress.org/latest.tar.gz
+RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz
+RUN rm -rf latest.tar.gz
+COPY ./srcs/wp-config.php /var/www/server/wordpress
 
 # copy & lounch bash script
 COPY ./srcs/run.sh /tmp
